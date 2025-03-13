@@ -147,11 +147,37 @@ namespace Team_Activity_2
 
 
         //Assign to Team 3 Member
-        private void ButtonCancelReservationRange(object sender, EventArgs e)
+           private async void ButtonCancelReservationRange(object sender, EventArgs e)
         {
+            var startSeat = await DisplayPromptAsync("Cancel Seat Range", "Enter starting seat number (e.g. A1:A4): ");
+            var endSeat = await DisplayPromptAsync("Cancel Seat Range", "Enter ending seat number: ");
 
+            if (startSeat != null && endSeat != null)
+            {
+                bool findStart = false;
+                for (int i = 0; i < seatingChart.GetLength(0); i++)
+                {
+                    for (int j = 0; j < seatingChart.GetLength(1); j++)
+                    {
+                        if (seatingChart[i, j].Name == startSeat)
+                        {
+                            findStart = true;
+                        }
+                        if (findStart)
+                        {
+                            seatingChart[i, j].Reserved = false;
+                        }
+                        if (seatingChart[i, j].Name == endSeat)
+                        {
+                            await DisplayAlert("Success", "Seats unreserved successfully!", "Ok");
+                            RefreshSeating();
+                            return;
+                        }
+                    }
+                }
+                await DisplayAlert("Error", "Invalid seat range.", "Ok");
+            }
         }
-
         //Mikayla Smith
         private async void ButtonResetSeatingChart(object sender, EventArgs e)
         {
