@@ -1,4 +1,4 @@
-﻿using System.Collections.Specialized;
+using System.Collections.Specialized;
 using System.Reflection.Metadata;
 namespace Team_Activity_2
 {
@@ -152,10 +152,27 @@ namespace Team_Activity_2
 
         }
 
-        //Assign to Team 4 Member
+        //Mikayla Smith
         private async void ButtonResetSeatingChart(object sender, EventArgs e)
         {
+            bool confirm = await DisplayAlert("Confirm Reset", 
+            "Are you sure you want to reset all seat reservations?", "Yes", "No");
+    
+            if (!confirm)
+            {
+                return; 
+            }
 
+            for (int i = 0; i < seatingChart.GetLength(0); i++)
+            {
+                for (int j = 0; j < seatingChart.GetLength(1); j++)
+                {
+                    seatingChart[i, j].Reserved = false;
+                }
+            }
+
+            await DisplayAlert("Success", "All seats have been reset to available.", "OK");
+            RefreshSeating(); 
         }
     }
 }
