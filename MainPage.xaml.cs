@@ -205,7 +205,7 @@ RefreshSeating();
         //Assign to Team 3 Member
         private async void ButtonCancelReservationRange(object sender, EventArgs e)
         {
-            var startSeat = await DisplayPromptAsync("Cancel Seat Range", "Enter starting seat number (e.g. A1:A4): ");
+            var startSeat = await DisplayPromptAsync("Cancel Seat Range", "Enter starting seat number: ");
             var endSeat = await DisplayPromptAsync("Cancel Seat Range", "Enter ending seat number: ");
 
             if (startSeat != null && endSeat != null)
