@@ -202,7 +202,7 @@ RefreshSeating();
         }
 
 
-        //Assign to Team 3 Member
+        //Devyn Peters
         private async void ButtonCancelReservationRange(object sender, EventArgs e)
         {
             var startSeat = await DisplayPromptAsync("Cancel Seat Range", "Enter starting seat number: ");
